@@ -1,4 +1,4 @@
-package cucumber.examples.java.calculator;
+package cucumber.examples.java.testNG;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Capabilities;

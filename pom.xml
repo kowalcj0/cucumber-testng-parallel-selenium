@@ -12,7 +12,138 @@
         <org.seleniumhq.selenium.selenium-server.version>2.40.0</org.seleniumhq.selenium.selenium-server.version>
         <org.testng.testng.version>6.8.7</org.testng.testng.version>
         <surefire.fork.count>2</surefire.fork.count>
+        <com.lazerycode.selenium.version>1.0.0</com.lazerycode.selenium.version>
+        <googlchromedriverbinary.version>2.9</googlchromedriverbinary.version>
     </properties>
+
+    <profiles>
+    <!--
+    to run tests using custom profile simply add -P name_of_the_profile to mvn command
+    ie.:
+        mvn clean test -P runLocally
+    -->
+        <profile>
+        <id>runTests</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>2.5.1</version>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <source>1.7</source>
+                            <target>1.7</target>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.16</version>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                            <reuseForks>false</reuseForks>
+                            <argLine>-Duser.language=en</argLine>
+                            <argLine>-Xmx1024m</argLine>
+                            <argLine>-XX:MaxPermSize=256m</argLine>
+                            <argLine>-Dfile.encoding=UTF-8</argLine>
+                            <useFile>false</useFile>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.2.1</version>
+                        <executions>
+                            <execution>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <mainClass>cucumber.jvm.parallel.ReportMerger</mainClass>
+                            <arguments>
+                                <argument>target/cucumber-report/</argument>
+                            </arguments>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!--
+            Use this profile to download driver binaries before running your tests locally.
+            Please find more comments explaining how to configure this plugin below.
+            -->
+            <id>downloadDriverBinaries</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.1</version>
+                        <configuration>
+                            <source>1.6</source>
+                            <target>1.6</target>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.lazerycode.selenium</groupId>
+                        <artifactId>driver-binary-downloader-maven-plugin</artifactId>
+                        <version>${com.lazerycode.selenium.version}</version>
+                        <configuration>
+                            <!-- root directory that downloaded driver binaries will be stored in -->
+                            <rootStandaloneServerDirectory>binaries</rootStandaloneServerDirectory>
+                            <!-- Where you want to store downloaded zip files -->
+                            <downloadedZipFileDirectory>binaries/zips</downloadedZipFileDirectory>
+                            <customRepositoryMap>src/main/resources/RepositoryMapForMavenWebDriverBinaryDownloaderPlugin.xml</customRepositoryMap>
+                            <operatingSystems>
+                                <windows>false</windows>
+                                <linux>true</linux>
+                                <osx>false</osx>
+                            </operatingSystems>
+                            <!-- Download 32bit binaries -->
+                            <thirtyTwoBitBinaries>false</thirtyTwoBitBinaries>
+                            <!-- Download 64bit binaries -->
+                            <sixtyFourBitBinaries>true</sixtyFourBitBinaries>
+                            <!-- If set to false will download every version available (Other filters will be taken into account -->
+                            <onlyGetLatestVersions>true</onlyGetLatestVersions>
+                            <throwExceptionIfSpecifiedVersionIsNotFound>true</throwExceptionIfSpecifiedVersionIsNotFound>
+                            <!-- Provide a list of drivers and binary versions to download (this is a map so only one version can be specified per driver) -->
+                            <getSpecificExecutableVersions>
+                                <googlechrome>${googlchromedriverbinary.version}</googlechrome>
+                                <!--<internetexplorer>2.40.0</internetexplorer>-->
+                            </getSpecificExecutableVersions>
+                            <!-- Number of times to attempt to download each file -->
+                            <fileDownloadRetryAttempts>2</fileDownloadRetryAttempts>
+                            <!-- Number of ms to wait before timing out when trying to connect to remote server to download file -->
+                            <fileDownloadConnectTimeout>20000</fileDownloadConnectTimeout>
+                            <!-- Number of ms to wait before timing out when trying to read file from remote server -->
+                            <fileDownloadReadTimeout>10000</fileDownloadReadTimeout>
+                            <!-- Overwrite any existing binaries that have been downloaded and extracted -->
+                            <overwriteFilesThatExist>false</overwriteFilesThatExist>
+                            <!-- Download drivers specific to the current HOST OS -->
+                            <!--<onlyGetDriversForHostOperatingSystem>false</onlyGetDriversForHostOperatingSystem>-->
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>selenium</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <repositories>
         <repository>
@@ -54,18 +185,13 @@
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-testng</artifactId>
             <version>${info.cukes.cucumber-testng.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>junit</groupId>
-					<artifactId>junit</artifactId>
-				</exclusion>
-			</exclusions>
-        </dependency><!--
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-picocontainer</artifactId>
-            <version>1.1.5</version>
-        </dependency>-->
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-server</artifactId>
@@ -82,77 +208,29 @@
             <artifactId>commons-io</artifactId>
             <version>1.3.2</version>
         </dependency>
-    </dependencies>
+        <dependency>
+            <!--
+            Hamcrest is a framework for writing matcher objects allowing 'match' rules to be defined declaratively.
+            It nicely integrates with JUnit, making assertions more descriptive.
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.16</version>
-                <configuration>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
-                    </suiteXmlFiles>
-                    <reuseForks>false</reuseForks>
-                    <argLine>-Duser.language=en</argLine>
-                    <argLine>-Xmx1024m</argLine>
-                    <argLine>-XX:MaxPermSize=256m</argLine>
-                    <argLine>-Dfile.encoding=UTF-8</argLine>
-                    <useFile>false</useFile>
-                </configuration>
-<!--                <executions>
-                    <execution>
-                        <id>acceptance-test</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                        <configuration>
-                            <forkCount>${surefire.fork.count}</forkCount>
-                            <reuseForks>false</reuseForks>
-                            <argLine>-Duser.language=en</argLine>
-                            <argLine>-Xmx1024m</argLine>
-                            <argLine>-XX:MaxPermSize=256m</argLine>
-                            <argLine>-Dfile.encoding=UTF-8</argLine>
-                            <useFile>false</useFile>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
-                            </suiteXmlFiles>&lt;!&ndash;
-                            <testFailureIgnore>true</testFailureIgnore>&ndash;&gt;
-                        </configuration>
-                    </execution>
-                </executions>-->
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
-                <executions>
-                    <execution>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <mainClass>cucumber.jvm.parallel.ReportMerger</mainClass>
-                    <arguments>
-                        <argument>target/cucumber-report/</argument>
-                    </arguments>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+            http://junit.sourceforge.net/javadoc/org/junit/Assert.html#assertThat(java.lang.String, T, org.hamcrest.Matcher)
+            http://code.google.com/p/hamcrest/wiki/Tutorial
+            -->
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <version>1.3</version>
+        </dependency>
+        <dependency>
+            <!--
+            A handy plugin that allows you to download driver binaries automatically
+            To download desired driver binaries, call the plugin like that:
+            mvn clean com.lazerycode.selenium:driver-binary-downloader-maven-plugin:selenium
+            to
+            src: http://ardesco.lazerycode.com/index.php/2012/08/introducing-the-driver-binary-downloader-maven-plugin-for-selenium/
+            -->
+            <groupId>com.lazerycode.selenium</groupId>
+            <artifactId>driver-binary-downloader-maven-plugin</artifactId>
+            <version>${com.lazerycode.selenium.version}</version>
+        </dependency>
+    </dependencies>
 </project>

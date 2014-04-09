@@ -5,6 +5,12 @@ import java.io.*;
 import java.util.Collection;
 import java.util.UUID;
 
+/**
+ *
+ * @author Tristan McCarthy
+ * @see - http://www.opencredo.com/2013/07/02/running-cucumber-jvm-tests-in-parallel/
+ * @see - https://github.com/tristanmccarthy/Cucumber-JVM-Parallel
+ */
 public class ReportMerger {
     private static String reportFileName = "report.js";
     private static String reportImageExtension = "png";
@@ -88,25 +94,3 @@ public class ReportMerger {
         FileUtils.writeStringToFile(reportFile, fileAsString);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

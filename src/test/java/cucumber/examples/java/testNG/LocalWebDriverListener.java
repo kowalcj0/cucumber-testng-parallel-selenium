@@ -1,9 +1,7 @@
-package cucumber.examples.java.calculator;
+package cucumber.examples.java.testNG;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import cucumber.examples.java.calculator.DriverManager;
-import cucumber.examples.java.calculator.LocalDriverFactory;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
