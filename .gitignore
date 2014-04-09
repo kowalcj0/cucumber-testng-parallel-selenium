@@ -1,0 +1,27 @@
+# files
+*.tmp
+*.log
+*.log
+.DS_Store
+*.out
+*.swp
+*.zip
+0
+
+#folders
+target
+test-output
+
+#intellij idea
+.idea
+*.iml
+*.ipr
+*.iws
+
+# eclipse
+.project
+.classpath
+.settings
+
+#gedit
+*.*~

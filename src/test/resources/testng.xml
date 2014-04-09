@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="run tests in parallel" parallel="tests" junit="false" verbose="1" configfailurepolicy="continue" thread-count="2">
+    <!--
+     verbose="1" configfailurepolicy="continue" thread-count="2"
+        REMEMBER TO set the junit suite parameter to true, to run jbehave tests as junit ones!!!!
+    -->
+    <listeners>
+        <listener class-name="cucumber.examples.java.calculator.LocalWebDriverListener" />
+    </listeners>
+    <test name="Tests in FF">
+        <parameter name="browserName" value="firefox" />
+        <!-- If you want to be more specific, replace this with a list of test classes you'd like to run -->
+        <classes>
+            <class name="cucumber.examples.java.calculator.RunCukesTestInFirefox" />
+        </classes>
+    </test>
+    <test name="Tests in Chrome">
+        <parameter name="browserName" value="chrome" />
+        <classes>
+            <class name="cucumber.examples.java.calculator.RunCukesTest"/>
+        </classes>
+    </test>
+</suite>
