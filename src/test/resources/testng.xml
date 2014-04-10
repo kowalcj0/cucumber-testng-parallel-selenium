@@ -11,13 +11,13 @@
         <parameter name="browserName" value="firefox" />
         <!-- If you want to be more specific, replace this with a list of test classes you'd like to run -->
         <classes>
-            <class name="cucumber.examples.java.testNG.RunCukesTestInFirefox" />
+            <class name="cucumber.examples.java.testNG.runners.RunCukesTestInFirefox" />
         </classes>
     </test>
     <test name="Tests in Chrome" >
         <parameter name="browserName" value="chrome" />
         <classes>
-            <class name="cucumber.examples.java.testNG.RunCukesTestInChrome"/>
+            <class name="cucumber.examples.java.testNG.runners.RunCukesTestInChrome"/>
         </classes>
     </test>
 </suite>

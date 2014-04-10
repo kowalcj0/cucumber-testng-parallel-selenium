@@ -1,25 +1,29 @@
-package cucumber.examples.java.testNG;
+package cucumber.examples.java.testNG.stepDefinitions;
 
-import org.apache.log4j.Logger;
+import cucumber.api.Scenario;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.examples.java.testNG.DriverManager;
+import cucumber.examples.java.testNG.StepsUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by jk on 03/03/14.
  */
-public class BasicStepdefs {
+public class Feature1And2Stepdefs {
 
-
-    static Logger log = Logger.getLogger(BasicStepdefs.class);
+    static Logger log = Logger.getLogger(Feature1And2Stepdefs.class);
     WebDriver driver = DriverManager.getDriver();
     WebElement webElement;
     WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -44,4 +48,10 @@ public class BasicStepdefs {
         log.info("I'm running step: Then system is in a normal state");
         assertThat("Element is not visible!!!", webElement.isDisplayed(), is(true));
     }
+
+    @Before
+    public void deleteAllCookies(){ StepsUtils.deleteAllCookies(); }
+
+    @After
+    public void embedScreenshot(Scenario scenario){ StepsUtils.embedScreenshot(scenario); }
 }

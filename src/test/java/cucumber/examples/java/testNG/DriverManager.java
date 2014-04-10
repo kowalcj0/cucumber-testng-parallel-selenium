@@ -25,7 +25,12 @@ public class DriverManager {
     }
 
     public static WebDriver getDriver() {
-        //log.debug("Getting instance of remote driver" + driver.get().getClass());
+        if (driver.get() == null) {
+            // this is need when running tests from IDE
+            log.info("Thread has no WedDriver, creating new one");
+            setWebDriver(LocalDriverFactory.createInstance(null));
+        }
+        log.debug("Getting instance of remote driver" + driver.get().getClass());
         return driver.get();
     }
 

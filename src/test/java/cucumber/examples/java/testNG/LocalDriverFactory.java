@@ -12,28 +12,38 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
  */
 public class LocalDriverFactory {
     public static WebDriver createInstance(String browserName) {
-        WebDriver driver = null;
-        if (browserName.equalsIgnoreCase("firefox")) {
-            driver = new FirefoxDriver();
-            return driver;
-        }
-        if (browserName.equalsIgnoreCase("internet")) {
-            driver = new InternetExplorerDriver();
-            return driver;
-        }
-        if (browserName.equalsIgnoreCase("chrome")) {
-            System.setProperty("webdriver.chrome.driver", "binaries/linux/googlechrome/64bit/2.9/chromedriver");
-            driver = new ChromeDriver();
-            return driver;
-        }
-        if (browserName.equalsIgnoreCase("htmlUnit")) {
-            driver = new HtmlUnitDriver();
-            return driver;
-        }
-        if (browserName.equalsIgnoreCase("htmlUnitWithJs")) {
-            driver = new HtmlUnitDriver(true);
-            return driver;
+        WebDriver driver;
+        browserName = (browserName != null) ? browserName : "firefox";
+
+        switch (Browser.valueOf(browserName.toUpperCase())) {
+            case FIREFOX:
+                driver = new FirefoxDriver();
+                break;
+            case IE:
+                driver = new InternetExplorerDriver();
+                break;
+            case CHROME:
+                System.setProperty("webdriver.chrome.driver", "binaries/linux/googlechrome/64bit/2.9/chromedriver");
+                driver = new ChromeDriver();
+                break;
+            case HTMLUNIT:
+                driver = new HtmlUnitDriver();
+                break;
+            case HTMLUNITJS:
+                driver = new HtmlUnitDriver(true);
+                break;
+            default:
+                driver = new FirefoxDriver();
+                break;
         }
         return driver;
+    }
+
+    private static enum Browser {
+        FIREFOX,
+        CHROME,
+        IE,
+        HTMLUNIT,
+        HTMLUNITJS;
     }
 }

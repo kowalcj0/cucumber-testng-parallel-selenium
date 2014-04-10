@@ -24,7 +24,7 @@ public class LocalWebDriverListener implements IInvokedMethodListener {
             log.info("getting driver for: " + browserName);
             WebDriver driver = LocalDriverFactory.createInstance(browserName);
             DriverManager.setWebDriver(driver);
-            log.info("Done! Created "+ browserName + " Dudriver!" );
+            log.info("Done! Created "+ browserName + " driver!" );
         } else {
             log.warn("Provided method is NOT a TestNG testMethod!!!");
         }
