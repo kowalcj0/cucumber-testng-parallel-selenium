@@ -11,19 +11,22 @@ Tested in IntelliJ Idea 13.1.1
 To run all stories from IDE only in Firefox, simply right click on one of the files:
 * cucumber.examples.java.testNG.runners.RunCukesTestInChrome
 * cucumber.examples.java.testNG.runners.RunCukesTestInFirefox
+
 And chose "Run ..."
 (Yes, choosing RunCukesTestInChrome will also run tests in FF!)
+
 
 To run all stories simultaneously in both browsers (Chrome and Firefox) right click on one of the files:
 * src/test/resources/TestNGRunTestsLocally.xml
 * src/test/resources/TestNGRunTestsRemotely.xml
+
 And chose "Run ..."
 
-To run selected feature, change the feature name in the class below:
+To run just one selected feature, change the feature name in the class below:
 
     cucumber.examples.java.testNG.runners.RunSingleFeature
 
-And as in previous example right click on this class and chose "Run ..."
+And as in previous example, right click on this class and chose "Run ..."
 
 
 ## Running features from CLI
