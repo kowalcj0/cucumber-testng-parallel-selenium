@@ -13,9 +13,11 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 /**
- * Created by jk on 03/03/14.
+ * Simple steps mapping class that always fails.
+ * I've added it to show how failed story will look like in the final Cucumber HTML report.
+ * @author jk
  */
-public class Bug12345{
+public class Bug12345 {
 
     static Logger log;
     WebDriver driver = DriverManager.getDriver();

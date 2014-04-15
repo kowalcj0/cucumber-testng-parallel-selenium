@@ -7,8 +7,9 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 /**
- * Author: Confusions Personified
- * src: http://rationaleemotions.wordpress.com/2013/07/31/parallel-webdriver-executions-using-testng/
+ * Based on the LocalDriverFactory found at: onrationaleemotions.wordpress.com
+ * @author: Confusions Personified
+ * @src: http://rationaleemotions.wordpress.com/2013/07/31/parallel-webdriver-executions-using-testng/
  */
 public class LocalDriverFactory {
     public static WebDriver createInstance(String browserName) {

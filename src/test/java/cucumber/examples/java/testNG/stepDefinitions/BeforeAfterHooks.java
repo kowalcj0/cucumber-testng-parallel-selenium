@@ -10,8 +10,10 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
 
 /**
- * @author: jk
- * @created: 2014-04-15:12
+ * Based on SharedDriver.java taken from cucumber-jvm/examples/java-webbit-websockets-selenium
+ *
+ * @src: https://github.com/cucumber/cucumber-jvm/blob/master/examples/java-webbit-websockets-selenium/src/test/java/cucumber/examples/java/websockets/SharedDriver.java
+ * @author: https://github.com/aslakhellesoy
  */
 public class BeforeAfterHooks {
 
@@ -37,7 +39,7 @@ public class BeforeAfterHooks {
      */
     public static void embedScreenshot(Scenario scenario) {
         if ( scenario.isFailed() ) {
-            log.error("Scenario failed. Taking screenshot...");
+            log.error("Scenario failed! Browser: " + DriverManager.getBrowserInfo() + " Taking screenshot...");
             scenario.write("Current Page URL is: " + DriverManager.getDriver().getCurrentUrl());
             scenario.write("Scenario Failed in: " + DriverManager.getBrowserInfo());
             try {

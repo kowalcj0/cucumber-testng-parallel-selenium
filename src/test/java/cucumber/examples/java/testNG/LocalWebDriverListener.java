@@ -10,6 +10,11 @@ import org.testng.internal.BaseTestMethod;
 import java.lang.reflect.Field;
 
 
+/**
+ * Based on the LocalDriverFactory found at: onrationaleemotions.wordpress.com
+ * @author: Confusions Personified
+ * @src: http://rationaleemotions.wordpress.com/2013/07/31/parallel-webdriver-executions-using-testng/
+ */
 public class LocalWebDriverListener implements IInvokedMethodListener {
 
     static Logger log = Logger.getLogger(LocalWebDriverListener.class);

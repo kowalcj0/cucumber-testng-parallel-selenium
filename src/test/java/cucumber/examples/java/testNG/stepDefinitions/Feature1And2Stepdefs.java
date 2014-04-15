@@ -15,7 +15,8 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 /**
- * Created by jk on 03/03/14.
+ * Contains step definitions for two feature files: first.feature & second.feature
+ * @author jk
  */
 public class Feature1And2Stepdefs {
 

@@ -7,16 +7,16 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Author: Confusions Personified
- * src: http://rationaleemotions.wordpress.com/2013/07/31/parallel-webdriver-executions-using-testng/
+ * A generic WebDriver manager, it works with local and remote instances of WebDriver.
  *
- * It's a generic WebDriver manager, it works with local and remote instances of WebDriver
+ * @author: Confusions Personified
+ * @src: http://rationaleemotions.wordpress.com/2013/07/31/parallel-webdriver-executions-using-testng/
  */
 public class DriverManager {
 
     /*
     This simple line does all the mutlithread magic.
-    For more details please refer to the link above :)
+    For more details please refer to the src link above :)
     */
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
     static Logger log;
