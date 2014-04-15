@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<root>
+    <windows>
+        <driver id="internetexplorer">
+            <version id="2.37.0">
+                <bitrate thirtytwobit="true">
+                    <filelocation>https://selenium.googlecode.com/files/IEDriverServer_Win32_2.37.0.zip</filelocation>
+                    <hash>d23aa898f50946f6b1ae5fa933116cff1b83f150</hash>
+                    <hashtype>sha1</hashtype>
+                </bitrate>
+                <bitrate sixtyfourbit="true">
+                    <filelocation>https://selenium.googlecode.com/files/IEDriverServer_x64_2.37.0.zip</filelocation>
+                    <hash>38acef909ef660953aa189558cf5d7bff2f6d801</hash>
+                    <hashtype>sha1</hashtype>
+                </bitrate>
+            </version>
+            <version id="2.39.0">
+                <bitrate thirtytwobit="true">
+                    <filelocation>http://selenium-release.storage.googleapis.com/2.39/IEDriverServer_Win32_2.39.0.zip</filelocation>
+                    <hash>bd4bc2b77a04999148e7fab974336e99</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+                <bitrate sixtyfourbit="true">
+                    <filelocation>http://selenium-release.storage.googleapis.com/2.39/IEDriverServer_x64_2.39.0.zip</filelocation>
+                    <hash>7d19f3d7ffb9cb40fc26cc38885b9160</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+            </version>
+            <version id="2.40.0">
+                <bitrate thirtytwobit="true">
+                    <filelocation>http://selenium-release.storage.googleapis.com/2.40/IEDriverServer_Win32_2.40.0.zip</filelocation>
+                    <hash>90c495b4bcd5e86c0a2e5c5c4ac16369</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+                <bitrate sixtyfourbit="true">
+                    <filelocation>http://selenium-release.storage.googleapis.com/2.40/IEDriverServer_x64_2.40.0.zip</filelocation>
+                    <hash>7769f840dc566657efe0a1268ec24904</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+            </version>
+        </driver>
+        <driver id="googlechrome">
+            <version id="2.6">
+                <bitrate thirtytwobit="true" sixtyfourbit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.6/chromedriver_win32.zip</filelocation>
+                    <hash>48f8d2462e44b8d06f88ff56857620c0</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+            </version>
+            <version id="2.7">
+                <bitrate thirtytwobit="true" sixtyfourbit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.7/chromedriver_win32.zip</filelocation>
+                    <hash>f9b86861545951bd24da0235f9793f67</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+            </version>
+            <version id="2.8">
+                <bitrate thirtytwobit="true" sixtyfourbit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.8/chromedriver_win32.zip</filelocation>
+                    <hash>209236a3fc361f06c0bf8554010fc231</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+            </version>
+            <version id="2.9">
+                <bitrate thirtytwobit="true" sixtyfourbit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.9/chromedriver_win32.zip</filelocation>
+                    <hash>ef6a4819563ef993c3aac8f229c0ca91</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+            </version>
+        </driver>
+        <driver id="phantomjs">
+            <version id="1.9.2">
+                <bitrate thirtytwobit="true" sixtyfourbit="true">
+                    <filelocation>https://phantomjs.googlecode.com/files/phantomjs-1.9.2-windows.zip</filelocation>
+                    <hash>5fcfb32d9df9e603a3980139026bc33d516dae01</hash>
+                    <hashtype>sha1</hashtype>
+                </bitrate>
+            </version>
+        </driver>
+    </windows>
+    <linux>
+        <driver id="googlechrome">
+            <version id="2.0">
+                <bitrate thirtytwobit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.0/chromedriver_linux32.zip</filelocation>
+                    <hash>c0d96102715c4916b872f91f5bf9b12c</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+                <bitrate sixtyfourbit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.0/chromedriver_linux64.zip</filelocation>
+                    <hash>858ebaf47e13dce7600191ed59974c09</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+            </version>
+            <version id="2.1">
+                <bitrate thirtytwobit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.1/chromedriver_linux32.zip</filelocation>
+                    <hash>1d7e908253f7240d1596332082cc5742</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+                <bitrate sixtyfourbit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.1/chromedriver_linux64.zip</filelocation>
+                    <hash>de406b5a1aac2bfb2f419ac01d7231e2</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+            </version>
+            <version id="2.2">
+                <bitrate thirtytwobit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.2/chromedriver_linux32.zip</filelocation>
+                    <hash>801b9f6c28a32575d8eae2abb1cdecd5</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+                <bitrate sixtyfourbit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.2/chromedriver_linux64.zip</filelocation>
+                    <hash>d5b73ee424717e45601553e91e204ad6</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+            </version>
+            <version id="2.3">
+                <bitrate thirtytwobit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.3/chromedriver_linux32.zip</filelocation>
+                    <hash>f3af4d92060e6d61c2d2ed86ad584246</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+                <bitrate sixtyfourbit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.3/chromedriver_linux64.zip</filelocation>
+                    <hash>1a816cc185a15af4d450805629790b0a</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+            </version>
+            <version id="2.4">
+                <bitrate thirtytwobit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.6/chromedriver_linux32.zip</filelocation>
+                    <hash>3f8ef2f01a7fb5805bed2d644569acba</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+                <bitrate sixtyfourbit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.6/chromedriver_linux64.zip</filelocation>
+                    <hash>5e70555cbbf75e3480dd1629a35bc7e3</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+            </version>
+            <version id="2.5">
+                <bitrate thirtytwobit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.5/chromedriver_linux32.zip</filelocation>
+                    <hash>aa61a13c88349be12750d339c7798dc7</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+                <bitrate sixtyfourbit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.5/chromedriver_linux64.zip</filelocation>
+                    <hash>2a45ca3b32bd1685bb796eeb564e9fc8</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+            </version>
+            <version id="2.6">
+                <bitrate thirtytwobit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.6/chromedriver_linux32.zip</filelocation>
+                    <hash>007bbff965cb4be6fe7734236b5afd52</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+                <bitrate sixtyfourbit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.6/chromedriver_linux64.zip</filelocation>
+                    <hash>0dbc5606c8481f8ae9775d1a27c3a8a5</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+            </version>
+            <version id="2.7">
+                <bitrate thirtytwobit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.7/chromedriver_linux32.zip</filelocation>
+                    <hash>f054ab7718126c55daa73dd8b13d10bf</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+                <bitrate sixtyfourbit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.7/chromedriver_linux64.zip</filelocation>
+                    <hash>07e80e731ee84bc16834c36142d03b8e</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+            </version>
+            <version id="2.8">
+                <bitrate thirtytwobit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.8/chromedriver_linux32.zip</filelocation>
+                    <hash>8db373d7cd45a4a188519041ccf271db</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+                <bitrate sixtyfourbit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.8/chromedriver_linux64.zip</filelocation>
+                    <hash>72a3eacd74b6e3d67d4871a747ecbeb2</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+            </version>
+            <version id="2.9">
+                <bitrate thirtytwobit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux32.zip</filelocation>
+                    <hash>780c12bf34d4f4029b7586b927b1fa69</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+                <bitrate sixtyfourbit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip</filelocation>
+                    <hash>e2e44f064ecb69ec5b6f1b80f3d13c93</hash>
+                    <hashtype>md5</hashtype>
+                </bitrate>
+            </version>
+        </driver>
+        <driver id="phantomjs">
+            <version id="1.9.2">
+                <bitrate sixtyfourbit="true">
+                    <filelocation>https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2</filelocation>
+                    <hash>c78c4037d98fa893e66fc516214499c58228d2f9</hash>
+                    <hashtype>sha1</hashtype>
+                </bitrate>
+                <bitrate thirtytwobit="true">
+                    <filelocation>https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-i686.tar.bz2</filelocation>
+                    <hash>9ead5dd275f79eaced61ce63dbeca58be4d7f090</hash>
+                    <hashtype>sha1</hashtype>
+                </bitrate>
+            </version>
+        </driver>
+    </linux>
+    <osx>
+        <driver id="googlechrome">
+            <version id="2.4">
+                <bitrate thirtytwobit="true" sixtyfourbit="true">
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.6/chromedriver_mac32.zip</filelocation>
+                    <hash>4643652d403961dd9a9a1980eb1a06bf8b6e9bad</hash>
+                    <hashtype>sha1</hashtype>
+                </bitrate>
+            </version>
+        </driver>
+        <driver id="phantomjs">
+            <version id="1.9.2">
+                <bitrate thirtytwobit="true" sixtyfourbit="true">
+                    <filelocation>https://phantomjs.googlecode.com/files/phantomjs-1.9.2-macosx.zip</filelocation>
+                    <hash>36357dc95c0676fb4972420ad25455f49a8f3331</hash>
+                    <hashtype>sha1</hashtype>
+                </bitrate>
+            </version>
+        </driver>
+    </osx>
+</root>
