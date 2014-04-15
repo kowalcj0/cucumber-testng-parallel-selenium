@@ -3,51 +3,64 @@
     <groupId>info.cukes</groupId>
     <artifactId>cucumber-testng-parallel-selenium</artifactId>
     <packaging>jar</packaging>
-    <name>Examples: Java Calculator TestNG</name>
+    <name>Example Java TestNG Cucumber parallel test executor</name>
     <version>1.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <googlchromedriverbinary.version>2.9</googlchromedriverbinary.version>
+        <source.and.target.JVM.version>1.7</source.and.target.JVM.version>
+        <surefire.fork.count>2</surefire.fork.count>
+
+        <com.lazerycode.selenium.version>1.0.0</com.lazerycode.selenium.version>
         <info.cukes.cucumber-java.version>1.1.5</info.cukes.cucumber-java.version>
         <info.cukes.cucumber-testng.version>1.1.5</info.cukes.cucumber-testng.version>
         <info.cukes.cucumber-jvm-deps.version>1.0.3</info.cukes.cucumber-jvm-deps.version>
+        <log4j.log4j.version>1.2.17</log4j.log4j.version>
+        <org.apache.commons.commons-io.version>1.3.2</org.apache.commons.commons-io.version>
+        <org.apache.maven.plugins.maven-compiler-plugin.version>3.1</org.apache.maven.plugins.maven-compiler-plugin.version>
+        <org.apache.maven.plugins.maven-surefire-plugin.version>2.16</org.apache.maven.plugins.maven-surefire-plugin.version>
+        <org.codehaus.mojo.exec-maven-plugin.version>1.2.1</org.codehaus.mojo.exec-maven-plugin.version>
+        <org.hamcrest.hamcrest-library.version>1.3</org.hamcrest.hamcrest-library.version>
         <org.seleniumhq.selenium.selenium-server.version>2.40.0</org.seleniumhq.selenium.selenium-server.version>
         <org.testng.testng.version>6.8.7</org.testng.testng.version>
-        <surefire.fork.count>2</surefire.fork.count>
-        <com.lazerycode.selenium.version>1.0.0</com.lazerycode.selenium.version>
-        <googlchromedriverbinary.version>2.9</googlchromedriverbinary.version>
     </properties>
+
+
 
     <profiles>
     <!--
-    to run tests using custom profile simply add -P name_of_the_profile to mvn command
+    to run one of the profiles defined below, simply add -P name_of_the_profile to mvn command
     ie.:
-        mvn clean test -P runLocally
+        mvn clean test -P runTestsLocally
     -->
         <profile>
-        <id>runTests</id>
-        <activation>
-            <activeByDefault>true</activeByDefault>
-        </activation>
+            <id>runTestsLocally</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <testNG.suiteXmlFile>src/test/resources/TestNGRunTestsLocally.xml</testNG.suiteXmlFile>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
-                        <version>2.5.1</version>
+                        <version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
                         <configuration>
                             <encoding>UTF-8</encoding>
-                            <source>1.7</source>
-                            <target>1.7</target>
+                            <source>${source.and.target.JVM.version}</source>
+                            <target>${source.and.target.JVM.version}</target>
                         </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>2.16</version>
+                        <version>${org.apache.maven.plugins.maven-surefire-plugin.version}</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                                <suiteXmlFile>${testNG.suiteXmlFile}</suiteXmlFile>
                             </suiteXmlFiles>
                             <reuseForks>false</reuseForks>
                             <argLine>-Duser.language=en</argLine>
@@ -56,16 +69,100 @@
                             <argLine>-Dfile.encoding=UTF-8</argLine>
                             <useFile>false</useFile>
                             <!--
-                            Remember to have the testFailureIgnore set to true
-                            if you want to run cucumber.jvm.parallel.ReportMerger even if some tests fails
+                            Remember to set the testFailureIgnore set to true if you want to run
+                            cucumber.jvm.parallel.ReportMerger even if some of the tests failed.
                             -->
                             <testFailureIgnore>true</testFailureIgnore>
                         </configuration>
+                        <executions>
+                            <execution>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                     </plugin>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
-                        <version>1.2.1</version>
+                        <version>${org.codehaus.mojo.exec-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <mainClass>cucumber.jvm.parallel.ReportMerger</mainClass>
+                            <arguments>
+                                <argument>target/cucumber-report/</argument>
+                            </arguments>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>runTestsRemotely</id>
+            <!--
+            This profile will run tests using Selenium RemoteWebDriver.
+            By default it will try to connect to http://localhost:4444/wd/hub
+            To change this value please make appropriate changes in:
+            src/test/resources/TestNGRunTestsRemotely.xml
+            or
+            cucumber.examples.java.testNG.RemoteWebDriverListener
+            -->
+            <properties>
+                <testNG.suiteXmlFile>src/test/resources/TestNGRunTestsRemotely.xml</testNG.suiteXmlFile>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <source>${source.and.target.JVM.version}</source>
+                            <target>${source.and.target.JVM.version}</target>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${org.apache.maven.plugins.maven-surefire-plugin.version}</version>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>${testNG.suiteXmlFile}</suiteXmlFile>
+                            </suiteXmlFiles>
+                            <reuseForks>false</reuseForks>
+                            <argLine>-Duser.language=en</argLine>
+                            <argLine>-Xmx1024m</argLine>
+                            <argLine>-XX:MaxPermSize=256m</argLine>
+                            <argLine>-Dfile.encoding=UTF-8</argLine>
+                            <useFile>false</useFile>
+                            <!--
+                            Remember to set the testFailureIgnore set to true if you want to run
+                            cucumber.jvm.parallel.ReportMerger even if some of the tests failed.
+                            -->
+                            <testFailureIgnore>true</testFailureIgnore>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>${org.codehaus.mojo.exec-maven-plugin.version}</version>
                         <executions>
                             <execution>
                                 <phase>post-integration-test</phase>
@@ -95,10 +192,10 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
-                        <version>3.1</version>
+                        <version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
                         <configuration>
-                            <source>1.6</source>
-                            <target>1.6</target>
+                            <source>${source.and.target.JVM.version}</source>
+                            <target>${source.and.target.JVM.version}</target>
                         </configuration>
                     </plugin>
                     <plugin>
@@ -214,12 +311,12 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <version>${log4j.log4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-io</artifactId>
-            <version>1.3.2</version>
+            <version>${org.apache.commons.commons-io.version}</version>
         </dependency>
         <dependency>
             <!--
@@ -231,7 +328,7 @@
             -->
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-library</artifactId>
-            <version>1.3</version>
+            <version>${org.hamcrest.hamcrest-library.version}</version>
         </dependency>
         <dependency>
             <!--

@@ -23,20 +23,20 @@ public class BeforeAfterHooks {
         log = Logger.getLogger(BeforeAfterHooks.class);
     }
 
-    @Before
     /**
      * Delete all cookies at the start of each scenario to avoid
      * shared state between tests
      */
+    @Before
     public void deleteAllCookies() {
         log.info("Deleting all cookies...");
         DriverManager.getDriver().manage().deleteAllCookies();
     }
 
-    @After
     /**
      * Embed a screenshot in test report if test is marked as failed
      */
+    @After
     public static void embedScreenshot(Scenario scenario) {
         if ( scenario.isFailed() ) {
             log.error("Scenario failed! Browser: " + DriverManager.getBrowserInfo() + " Taking screenshot...");

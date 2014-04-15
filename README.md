@@ -5,30 +5,39 @@ This example project is based on few other projects:
 
 It allows you to run Cucumber features (tests/scenarios) in multiple browsers simultaneously using Selenium (WebDriver) and TestNG.
 
-## How to run your tests from CLI
-run all tests using default browser (Firefox)
 
-    mvn clean test
-
-## Running the stories in IDE
+## Running features in IDE
 Tested in IntelliJ Idea 13.1.1
-To run all stories from IDE in Firefox, simply right click on:
+To run all stories from IDE only in Firefox, simply right click on one of the files:
+* cucumber.examples.java.testNG.runners.RunCukesTestInChrome
+* cucumber.examples.java.testNG.runners.RunCukesTestInFirefox
+And chose "Run ..."
+(Yes, choosing RunCukesTestInChrome will also run tests in FF!)
 
-    cucumber.examples.java.testNG.runners.RunCukesTestInChrome
+To run all stories simultaneously in both browsers (Chrome and Firefox) right click on one of the files:
+* src/test/resources/TestNGRunTestsLocally.xml
+* src/test/resources/TestNGRunTestsRemotely.xml
+And chose "Run ..."
 
-or
-
-    cucumber.examples.java.testNG.runners.RunCukesTestInFirefox
-
-or to run a selected single feature, change the feature name in the class below:
+To run selected feature, change the feature name in the class below:
 
     cucumber.examples.java.testNG.runners.RunSingleFeature
 
-And chose "Run ..."
+And as in previous example right click on this class and chose "Run ..."
+
+
+## Running features from CLI
+Run tests using local browsers:
+
+    mvn clean install
+
+Run tests using browsers running on remote nodes:
+
+    mvn clean install -P runTestsRemotely
 
 
 ## Viewing the results
-There's a HTML report in target/cucumber-report
+All Cucumber reports [html, json, xml, js] are in: target/cucumber-report
 
 
 ## How to download WebDriver binaries automatically
@@ -36,7 +45,7 @@ This project is using Mark Collin's "selenium-standalone-server-plugin" which is
 WebDriver binaries automatically.
 Once you configure the plugin to your liking, then:
 
-    mvn clean test -P downloadDriverBinaries
+    mvn clean install -P downloadDriverBinaries
 
 The pom.xml is currently configured to download only a Chrome driver binary for 64bit Linux OSes.
 If you can't download desired driver binary, then check if its URL and checksum specified in:

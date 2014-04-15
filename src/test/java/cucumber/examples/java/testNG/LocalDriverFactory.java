@@ -37,6 +37,8 @@ public class LocalDriverFactory {
                 driver = new FirefoxDriver();
                 break;
         }
+        // maximize browser's window on start
+        driver.manage().window().maximize();
         return driver;
     }
 

@@ -27,22 +27,20 @@ public class Feature1And2Stepdefs {
 
     @Given("^I am on (.+)$")
     public void givenIAmOn(String URL) {
-        log.info("Given a system state<br/>");
-        final StackTraceElement[] ste = Thread.currentThread().getStackTrace();
-        log.info(String.format("I'm running step: Given I am on! using: %s / %s", driver.getClass().toString(), ste[ste.length - 1 - 1].getMethodName()));
+        log.info("Given I'm on "+URL+"<br/>");
         driver.get(URL);
     }
 
     @When("^I search for element (.+)$")
     public void whenISearchForElement(String element_id) {
-        log.info("I'm running step: I search for element");
+        log.info("When I search for element " + element_id);
         webElement = driver.findElement(By.id(element_id));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(element_id)));
     }
 
     @Then("^I should see this element$")
     public void thenIShouldSeeThisElement() {
-        log.info("I'm running step: Then system is in a normal state");
+        log.info("Then I should see this element");
         assertThat("Element is not visible!!!", webElement.isDisplayed(), is(true));
     }
 }

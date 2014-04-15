@@ -30,6 +30,7 @@ public class Bug12345 {
 
     @Given("^I search on google.com for (.+)")
     public void givenISearchFor(String keywords) {
+        log.info("Given I search google.com for " + keywords);
         googleCom = new GoogleCom(this.driver);
         googleCom.go();
         googleCom.searchFor(keywords);
@@ -37,11 +38,13 @@ public class Bug12345 {
 
     @When("^I get the search results$")
     public void whenIGetTheSearchResults() {
+        log.info("When I get the search results");
         this.searchResults = googleCom.getTheSearchResults();
     }
 
     @Then("^I should find the answer \"(.+)\" among the search result$")
     public void thenIShouldSeeThisElement(String answer) {
+        log.info("Then I should find the answer '"+answer+"' among the search result");
         boolean didIFindTheAnswerToMyQuery = false;
         for ( WebElement we : this.searchResults){
             // change the state of didIFindTheAnswerToMyQuery only if the answer was found
