@@ -1,9 +1,10 @@
 package cucumber.examples.java.testNG;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Author: Confusions Personified
@@ -35,6 +36,7 @@ public class DriverManager {
     }
 
     public static void setWebDriver(WebDriver driver) {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         DriverManager.driver.set(driver);
     }
 

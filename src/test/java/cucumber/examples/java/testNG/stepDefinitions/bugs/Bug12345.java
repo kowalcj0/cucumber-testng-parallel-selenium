@@ -1,14 +1,10 @@
 package cucumber.examples.java.testNG.stepDefinitions.bugs;
 
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.examples.java.testNG.DriverManager;
 import cucumber.examples.java.testNG.page_objects.GoogleCom;
-import cucumber.examples.java.testNG.StepsUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import java.util.List;
@@ -51,11 +47,4 @@ public class Bug12345{
         }
         assertThat("Couldn't find the answer for my question!!!", didIFindTheAnswerToMyQuery, is(true));
     }
-
-    @Before
-    public void deleteAllCookies(){ StepsUtils.deleteAllCookies(); }
-
-    @After
-    public void embedScreenshot(Scenario scenario){ StepsUtils.embedScreenshot(scenario); }
-
 }
