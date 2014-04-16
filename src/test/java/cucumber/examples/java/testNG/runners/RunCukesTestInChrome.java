@@ -14,7 +14,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
         glue = {"cucumber.examples.java.testNG.stepDefinitions"},
         format = {"pretty",
                 "html:target/cucumber-report/chrome",
-                "json:target/cucumber-report/chrome/cucumber.json",
-                "junit:target/cucumber-report/chrome/cucumber.xml"})
+                "json:target/cucumber-report/chrome.json",
+                "junit:target/cucumber-report/chrome.xml"})
 public class RunCukesTestInChrome extends AbstractTestNGCucumberTests {
 }

@@ -14,7 +14,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
         glue = {"cucumber.examples.java.testNG.stepDefinitions"},
         format = {"pretty",
                 "html:target/cucumber-report/firefox",
-                "json:target/cucumber-report/firefox/cucumber.json",
-                "junit:target/cucumber-report/firefox/cucumber.xml"})
+                "json:target/cucumber-report/firefox.json",
+                "junit:target/cucumber-report/firefox.xml"})
 public class RunCukesTestInFirefox extends AbstractTestNGCucumberTests {
 }

@@ -56,3 +56,23 @@ If you can't download desired driver binary, then check if its URL and checksum 
     src/main/resources/RepositoryMapForMavenWebDriverBinaryDownloaderPlugin.xml
 
 are correct. If not, then modify this file accordingly.
+
+
+## Jenkins configuration
+I'll add a tutorial later
+
+### tools that need to be installed on the Jenkins Host machine
+maven 2/3
+
+### List of useful plugins
+AnsiColor
+Cucumber json test reporting.
+cucumber-perf
+cucumber-reports
+GIT client plugin
+GIT plugin
+Hudson Locks and Latches plugin
+Maven Integration plugin
+SSH Credentials Plugin
+TestNG Results Plugin
+Xvfb plugin
