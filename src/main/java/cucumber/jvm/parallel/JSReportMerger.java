@@ -11,14 +11,14 @@ import java.util.UUID;
  * @see - http://www.opencredo.com/2013/07/02/running-cucumber-jvm-tests-in-parallel/
  * @see - https://github.com/tristanmccarthy/Cucumber-JVM-Parallel
  */
-public class ReportMerger {
+public class JSReportMerger {
     private static String reportFileName = "report.js";
     private static String reportImageExtension = "png";
 
     public static void main(String[] args) throws Throwable {
         File reportDirectory = new File(args[0]);
         if (reportDirectory.exists()) {
-            ReportMerger munger = new ReportMerger();
+            JSReportMerger munger = new JSReportMerger();
             munger.mergeReports(reportDirectory);
         }
     }

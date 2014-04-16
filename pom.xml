@@ -68,7 +68,7 @@
                             <useFile>false</useFile>
                             <!--
                             Remember to set the testFailureIgnore set to true if you want to run
-                            cucumber.jvm.parallel.ReportMerger even if some of the tests failed.
+                            cucumber.jvm.parallel.JSReportMergerer even if some of the tests failed.
                             -->
                             <testFailureIgnore>true</testFailureIgnore>
                         </configuration>
@@ -87,18 +87,34 @@
                         <version>${org.codehaus.mojo.exec-maven-plugin.version}</version>
                         <executions>
                             <execution>
+                                <id>merge-cucumber-js-reports</id>
                                 <phase>post-integration-test</phase>
                                 <goals>
                                     <goal>java</goal>
                                 </goals>
+                                <configuration>
+                                    <classpathScope>test</classpathScope>
+                                    <mainClass>cucumber.jvm.parallel.JSReportMerger</mainClass>
+                                    <arguments>
+                                        <argument>target/cucumber-report/</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>merge-cucumber-json-reports</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                                <configuration>
+                                    <classpathScope>test</classpathScope>
+                                    <mainClass>cucumber.jvm.parallel.JSONReportMerger</mainClass>
+                                    <arguments>
+                                        <argument>target/cucumber-report/</argument>
+                                    </arguments>
+                                </configuration>
                             </execution>
                         </executions>
-                        <configuration>
-                            <mainClass>cucumber.jvm.parallel.ReportMerger</mainClass>
-                            <arguments>
-                                <argument>target/cucumber-report/</argument>
-                            </arguments>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -144,7 +160,7 @@
                             <useFile>false</useFile>
                             <!--
                             Remember to set the testFailureIgnore set to true if you want to run
-                            cucumber.jvm.parallel.ReportMerger even if some of the tests failed.
+                            cucumber.jvm.parallel.JSReportMergerer even if some of the tests failed.
                             -->
                             <testFailureIgnore>true</testFailureIgnore>
                         </configuration>
@@ -163,18 +179,34 @@
                         <version>${org.codehaus.mojo.exec-maven-plugin.version}</version>
                         <executions>
                             <execution>
+                                <id>merge-cucumber-js-reports</id>
                                 <phase>post-integration-test</phase>
                                 <goals>
                                     <goal>java</goal>
                                 </goals>
+                                <configuration>
+                                    <classpathScope>test</classpathScope>
+                                    <mainClass>cucumber.jvm.parallel.JSReportMerger</mainClass>
+                                    <arguments>
+                                        <argument>target/cucumber-report/</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>merge-cucumber-json-reports</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                                <configuration>
+                                    <classpathScope>test</classpathScope>
+                                    <mainClass>cucumber.jvm.parallel.JSONReportMerger</mainClass>
+                                    <arguments>
+                                        <argument>target/cucumber-report/</argument>
+                                    </arguments>
+                                </configuration>
                             </execution>
                         </executions>
-                        <configuration>
-                            <mainClass>cucumber.jvm.parallel.ReportMerger</mainClass>
-                            <arguments>
-                                <argument>target/cucumber-report/</argument>
-                            </arguments>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -340,6 +372,14 @@
             <groupId>com.lazerycode.selenium</groupId>
             <artifactId>driver-binary-downloader-maven-plugin</artifactId>
             <version>${com.lazerycode.selenium.version}</version>
+        </dependency>
+        <dependency>
+            <!--
+            Required by JSONReportMerger
+            -->
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1</version>
         </dependency>
     </dependencies>
 </project>
