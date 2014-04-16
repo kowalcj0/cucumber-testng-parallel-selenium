@@ -66,6 +66,7 @@ public class JSONReportMerger {
                 // prepend parent report directory name to all feature IDs and Names
                 // this helps analyse report later on
                 renameFeatureIDsAndNames(report);
+                /*
                 //if we are on the first pass, copy the directory of the file to use as basis for merge
                 if (mergedReport == null) {
                     // copy just the cucumber.json
@@ -75,7 +76,7 @@ public class JSONReportMerger {
                 } else {
                     //otherwise merge this report into existing master report
                     mergeFiles(mergedReport, report);
-                }
+                }*/
             }
         }
     }

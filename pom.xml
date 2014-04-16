@@ -177,7 +177,7 @@
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
                         <version>${org.codehaus.mojo.exec-maven-plugin.version}</version>
-                        <executions>
+                        <executions><!--
                             <execution>
                                 <id>merge-cucumber-js-reports</id>
                                 <phase>post-integration-test</phase>
@@ -191,7 +191,7 @@
                                         <argument>target/cucumber-report/</argument>
                                     </arguments>
                                 </configuration>
-                            </execution>
+                            </execution>-->
                             <execution>
                                 <id>merge-cucumber-json-reports</id>
                                 <phase>post-integration-test</phase>
